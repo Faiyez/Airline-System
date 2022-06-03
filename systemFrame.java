@@ -2,16 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
-
-
 import java.awt.Graphics2D;
 //import java.awt.Image;
+
 import java.io.File;
 import javax.imageio.ImageIO;
+
 public class systemFrame extends JFrame implements ActionListener {
     JLabel headerLabel, passengerHeader, selectionLabel, 
     departLabel, firstLabel, lastLabel, passportLabel, fromLabel, 
-    toLabel,imageLabel, headerImage, nameLabel;
+    toLabel,imageLabel, headerImage, nameLabel, flightsHeader, passengerLabel;
     JTextField firstName, lastName, passportNo;
     JPanel menuPanel, headerPanel;
     JComboBox fromBox, toBox;
@@ -50,12 +50,17 @@ public class systemFrame extends JFrame implements ActionListener {
         
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        String destinations[] = {"Toronto", "Montreal", "Paris", "New York"};
+        String destinations[] = {"From","Toronto", "Montreal", "Paris", "New York"};
         fromBox = new JComboBox(destinations);
         toBox = new JComboBox(destinations);
+        comboboxAuto.enable(fromBox);
+        comboboxAuto.enable(toBox);
+        
         this.setPreferredSize(size);
         //this.setPreferredSize(new Dimension(1200, 600));
+        passengerLabel = new JLabel("Passenger Information");
         imageLabel = new JLabel();
+        flightsHeader = new JLabel("Select Flights");
         imageLabel.setIcon(new ImageIcon("world.jpg"));
         fromLabel = new JLabel("From: ");
         toLabel = new JLabel("To: ");
@@ -69,7 +74,10 @@ public class systemFrame extends JFrame implements ActionListener {
         passportNo = new JTextField();
         passportLabel = new JLabel("Passport NO: ");
 
-
+        passengerLabel.setFont(new Font(null, Font.BOLD, 20));
+        passengerLabel.setBounds(240, 140, 250, 25);
+        flightsHeader.setFont(new Font(null, Font.BOLD, 20));
+        flightsHeader.setBounds(655, 140, 250, 25);
         imageLabel.setBounds(0, 0, 1400, 1400);
         toBox.setBounds(700, 230, 100, 20);
         toLabel.setBounds(640, 230, 100, 20);
@@ -96,6 +104,8 @@ public class systemFrame extends JFrame implements ActionListener {
 
         //add(departLabel);
 
+        add(passengerLabel);
+        add(flightsHeader);
         add(headerPanel);
         add(menuPanel);
         add(toBox);

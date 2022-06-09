@@ -11,7 +11,8 @@ import javax.imageio.ImageIO;
 public class systemFrame extends JFrame implements ActionListener {
     JLabel headerLabel, passengerHeader, selectionLabel, 
     departLabel, firstLabel, lastLabel, passportLabel, fromLabel, 
-    toLabel,imageLabel, headerImage, nameLabel, flightsHeader, passengerLabel;
+    toLabel,imageLabel, headerImage, nameLabel, flightsHeader, passengerLabel,
+    departingLabel, arrivalLabel ;
     JTextField firstName, lastName, passportNo;
     JPanel menuPanel, headerPanel;
     JComboBox fromBox, toBox;
@@ -50,7 +51,7 @@ public class systemFrame extends JFrame implements ActionListener {
         
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        String destinations[] = {"From","Toronto", "Montreal", "Paris", "New York"};
+        String destinations[] = {"","Toronto", "Montreal", "Paris", "New York"};
         fromBox = new JComboBox(destinations);
         toBox = new JComboBox(destinations);
         comboboxAuto.enable(fromBox);
@@ -103,7 +104,53 @@ public class systemFrame extends JFrame implements ActionListener {
         //departLabel.setFont(new Font(null, Font.BOLD, 20));
 
         //add(departLabel);
-
+        // Calendar implementation
+        departLabel = new JLabel("Departing");
+        departLabel.setBounds(640, 260, 100, 20);
+        arrivalLabel = new JLabel("Arrival");
+        arrivalLabel.setBounds(640, 290, 100, 20);
+        JLabel J_Label = new JLabel("Date Selected:");
+        final JTextField J_Text_Field = new JTextField(20);
+        final JTextField J_Text_Field2 = new JTextField(20);
+        J_Text_Field.setBounds(740,260,100,20);
+        J_Text_Field2.setBounds(740,290,100,20);
+        
+        JButton calendarButton1 = new JButton("Calendar");
+        JButton calendarButton2 = new JButton("Calendar");
+        calendarButton1.setBounds(840,260,100,20); 
+        calendarButton2.setBounds(840,290,100,20); 
+      /*
+        JPanel calendarPanel = new JPanel();
+        calendarPanel.setBounds(250, 250, 160, 1400);
+        calendarPanel.add(J_Label);
+        calendarPanel.add(J_Text_Field);
+        calendarPanel.add(J_Text_Field2);
+        calendarPanel.add(calendarButton);
+*/
+        final JFrame calendarFrame = new JFrame();
+        //getContentPane().add(calendarPanel);
+        //calendarFrame.pack();
+        //calendarFrame.setVisible(true);
+        calendarButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                J_Text_Field.setText(new DatePick(calendarFrame).Set_Picked_Date());
+                //J_Text_Field2.setText(new DatePick(calendarFrame).Set_Picked_Date());
+            }
+        
+        });    
+        calendarButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                //J_Text_Field.setText(new DatePick(calendarFrame).Set_Picked_Date());
+                J_Text_Field2.setText(new DatePick(calendarFrame).Set_Picked_Date());
+            }
+        
+        });            
+        add(calendarButton2);
+        add(calendarButton1);
+        add(J_Text_Field);
+        add(J_Text_Field2);
+        add(departLabel);
+        add(arrivalLabel);
         add(passengerLabel);
         add(flightsHeader);
         add(headerPanel);
@@ -127,7 +174,32 @@ public class systemFrame extends JFrame implements ActionListener {
         validate();
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+/* 
+    // Calendar implementation
+        departLabel = new JLabel("Departing");
+        departLabel.setBounds(640, 330, 100, 20);
+        arrivalLabel = new JLabel("Arrival");
+        arrivalLabel.setBounds(640, 430, 100, 20);
+        JLabel J_Label = new JLabel("Date Selected:");
+        final JTextField J_Text_Field = new JTextField(20);
+        JButton calendarButton = new JButton("Choose the Date");
+        JPanel calendarPanel = new JPanel();
+        calendarPanel.setBounds(250, 250, 160, 1400);
+        calendarPanel.add(J_Label);
+        calendarPanel.add(J_Text_Field);
+        calendarPanel.add(calendarButton);
+        final JFrame calendarFrame = new JFrame();
+        getContentPane().add(calendarPanel);
+        //calendarFrame.pack();
+        //calendarFrame.setVisible(true);
+        calendarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                J_Text_Field.setText(new DatePick(calendarFrame).Set_Picked_Date());
+            }
+        });    
+        */
     }
+// Calendar implementation
 
 
 
@@ -135,9 +207,11 @@ public class systemFrame extends JFrame implements ActionListener {
     
     
     }
+     
     public static void main(String[] args){
         //mainUI ui = new mainUI();
         
         systemFrame newFrame = new systemFrame();
     }
+
 }

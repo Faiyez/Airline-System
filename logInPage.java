@@ -14,7 +14,7 @@ public class logInPage extends JFrame implements ActionListener{
     JLabel messageLabel = new JLabel();
     
     HashMap<String, String> loginInfo = new HashMap<String, String>();
-    loginPage(HashMap<String, String> realLoginInfo){
+    void loginPage(HashMap<String, String> realLoginInfo){
         loginInfo = realLoginInfo;
         loginLabel.setBounds(50,100,80,20);
         passwordLabel.setBounds(50,150,80,20);
@@ -73,10 +73,7 @@ public class logInPage extends JFrame implements ActionListener{
 
 
 
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
+
 
     
-}
+

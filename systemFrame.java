@@ -2,11 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
-import java.awt.Graphics2D;
-//import java.awt.Image;
-
-import java.io.File;
-import javax.imageio.ImageIO;
 
 public class systemFrame extends JFrame implements ActionListener {
     JLabel headerLabel, passengerHeader, selectionLabel, 
@@ -207,7 +202,7 @@ public class systemFrame extends JFrame implements ActionListener {
     
     
     }
-     
+      
     public static void main(String[] args){
         //mainUI ui = new mainUI();
         

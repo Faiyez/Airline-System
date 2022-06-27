@@ -14,7 +14,12 @@ public class logInPage extends JFrame implements ActionListener{
     JLabel messageLabel = new JLabel();
     
     HashMap<String, String> loginInfo = new HashMap<String, String>();
-    void loginPage(HashMap<String, String> realLoginInfo){
+
+    public logInPage(){
+        HashMap<String, String> realLoginInfo = new HashMap<String, String>();
+        realLoginInfo.put("asdf","123");
+        loginInfo.put("Admin", "123");
+        loginInfo.put("User","asdf");
         loginInfo = realLoginInfo;
         loginLabel.setBounds(50,100,80,20);
         passwordLabel.setBounds(50,150,80,20);
@@ -38,7 +43,8 @@ public class logInPage extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500,500);
         setLayout(null);
-        setVisible(true);        
+        setVisible(true);  
+     
     }
 
 
@@ -68,6 +74,12 @@ public class logInPage extends JFrame implements ActionListener{
         
 
     }
+/* 
+    public static void main(String[] args){
+        logInPage newFrame = new logInPage();
+    }
+    */
+
 }
 
 

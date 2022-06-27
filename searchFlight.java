@@ -7,18 +7,20 @@ public class searchFlight extends JFrame implements ActionListener {
     JLabel headerLabel, selectionLabel,selectDestinationsLabel,
     departLabel, fromLabel, flight2Label,
     toLabel,imageLabel, headerImage, nameLabel, flightsHeader,
-    departingLabel, arrivalLabel ;
+    departingLabel, arrivalLabel, selectDates ;
     JPanel menuPanel, headerPanel;
     JComboBox fromBox, toBox;
-    JButton oneWayButton, twowayButton, multiCityButton;
+    JButton oneWayButton, twowayButton, multiCityButton, calendarButton2
+    ,signInButton, thingsToDoButton;
+    JTextField J_Text_Field2;
 
     searchFlight(){
         menuPanel = new JPanel();
         menuPanel.setBackground(Color.WHITE);
         menuPanel.setBounds(0, 0, 160, 1400);
         menuPanel.setLayout(null);
-        JButton signInButton = new JButton("Sign In");
-        JButton thingsToDoButton = new JButton("Things To Do");
+        signInButton = new JButton("Sign In");
+        thingsToDoButton = new JButton("Things To Do");
         JLabel menuLabel = new JLabel("Menu");
 
         menuLabel.setBounds(25, 120, 140, 40);
@@ -45,10 +47,13 @@ public class searchFlight extends JFrame implements ActionListener {
         //One way, multiway and multicity button implementation.
         oneWayButton = new JButton("One Way");
         oneWayButton.setBounds(240, 180, 90, 25);
+        oneWayButton.addActionListener(this);
         twowayButton = new JButton("Two Way");
-        twowayButton.setBounds(340, 180, 90, 25);  
+        twowayButton.setBounds(340, 180, 90, 25);
+        twowayButton.addActionListener(this);  
         multiCityButton = new JButton("Multi City");
         multiCityButton.setBounds(440, 180, 90, 25); 
+        multiCityButton.addActionListener(this);
         flight2Label = new JLabel("2nd Flight Inforamtion");               
 //      Button functionalities
 /* 
@@ -70,6 +75,11 @@ public class searchFlight extends JFrame implements ActionListener {
         
         this.setPreferredSize(size);
         //this.setPreferredSize(new Dimension(1200, 600));
+        //Select dates Label
+        selectDates = new JLabel("Select Dates");
+        selectDates.setFont(new Font(null, Font.BOLD,25));
+        selectDates.setBounds(675,250,250,25);
+
         imageLabel = new JLabel();
         flightsHeader = new JLabel("Select Flights");
         imageLabel.setIcon(new ImageIcon("world.jpg"));
@@ -85,12 +95,12 @@ public class searchFlight extends JFrame implements ActionListener {
         flightsHeader.setFont(new Font(null, Font.BOLD, 40));
         flightsHeader.setBounds(555, 120, 450, 50);
         imageLabel.setBounds(0, 0, 1400, 1400);
-        toBox.setBounds(340, 300, 100, 20);
+        toBox.setBounds(320, 300, 100, 20);
         toLabel.setBounds(240, 300, 80, 20);
         toLabel.setFont(new Font(null, Font.PLAIN, 20));
-        fromLabel.setBounds(240, 320, 80, 20);
+        fromLabel.setBounds(240, 340, 80, 20);
         fromLabel.setFont(new Font(null, Font.PLAIN, 20));
-        fromBox.setBounds(320, 320, 100 , 20);
+        fromBox.setBounds(320, 340, 100 , 20);
         //departLabel.setBounds(15, 15, 50, 20);
         //departLabel.setFont(new Font(null, Font.BOLD, 20));
 
@@ -98,19 +108,23 @@ public class searchFlight extends JFrame implements ActionListener {
         // Calendar implementation
         departLabel = new JLabel("Departing");
         departLabel.setFont(new Font(null, Font.PLAIN,20));
-        departLabel.setBounds(615, 220, 100, 25);
+        departLabel.setBounds(615, 300, 100, 25);
         arrivalLabel = new JLabel("Arrival");
-        arrivalLabel.setBounds(800, 220, 100, 25);
+        arrivalLabel.setFont(new Font(null, Font.PLAIN,20));
+        arrivalLabel.setBounds(615, 340, 100, 25);
         JLabel J_Label = new JLabel("Date Selected:");
         final JTextField J_Text_Field = new JTextField(25);
-        final JTextField J_Text_Field2 = new JTextField(25);
-        J_Text_Field.setBounds(700,220,100,25);
-        J_Text_Field2.setBounds(900,220,100,25);
+        J_Text_Field2 = new JTextField(25);
+        J_Text_Field.setBounds(720,300,100,25);
+        J_Text_Field2.setBounds(720,340,100,25);
+        J_Text_Field2.addActionListener(this);
+        
         
         JButton calendarButton1 = new JButton("Calendar");
-        JButton calendarButton2 = new JButton("Calendar");
-        calendarButton1.setBounds(840,260,100,25); 
-        calendarButton2.setBounds(840,290,100,25); 
+        calendarButton2 = new JButton("Calendar");
+        calendarButton1.setBounds(840,300,100,25); 
+        calendarButton2.addActionListener(this);
+        calendarButton2.setBounds(840,340,100,25); 
  
         final JFrame calendarFrame = new JFrame();
  
@@ -120,14 +134,17 @@ public class searchFlight extends JFrame implements ActionListener {
                 
             }
         
-        });    
+        });  
+        /*  
         calendarButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 
                 J_Text_Field2.setText(new DatePick(calendarFrame).Set_Picked_Date());
             }
         
-        });    
+        });
+         */   
+        add(selectDates); 
         add(selectDestinationsLabel);
         add(multiCityButton);   
         add(twowayButton);   
@@ -166,11 +183,24 @@ public class searchFlight extends JFrame implements ActionListener {
             validate();
             repaint();
         }
+        if(e.getSource() == oneWayButton){
+            arrivalLabel.setEnabled(false);
+            J_Text_Field2.setEnabled(false);
+            calendarButton2.setEnabled(false);
+            validate();
+            repaint();
+
+        }
+        if(e.getSource() == signInButton){
+            logInPage signInpage = new logInPage();
+            changePanel(signInpage);
+        }
         
     }  
-    
+     
     public static void main(String[] args){
         searchFlight newFrame = new searchFlight();
     }
     
+   
 }

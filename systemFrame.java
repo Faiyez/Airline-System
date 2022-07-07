@@ -202,7 +202,7 @@ public class systemFrame extends JFrame implements ActionListener {
     
     
     }
-/* 
+/*  
     public static void main(String[] args){
         //mainUI ui = new mainUI();
         

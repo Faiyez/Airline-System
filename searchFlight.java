@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.ImageIcon;
 
 public class searchFlight extends JFrame implements ActionListener {
     JLabel headerLabel, selectionLabel,selectDestinationsLabel,
@@ -10,9 +9,12 @@ public class searchFlight extends JFrame implements ActionListener {
     departingLabel, arrivalLabel, selectDates ;
     JPanel menuPanel, headerPanel;
     JComboBox fromBox, toBox;
+    baseFrame frame;
     JButton oneWayButton, twowayButton, multiCityButton, calendarButton2
-    ,signInButton, thingsToDoButton;
+    ,signInButton, thingsToDoButton,searchFlightButton;
     JTextField J_Text_Field2;
+    final JTextField J_Text_Field;
+    logInPage signInpage;
 
     searchFlight(){
         menuPanel = new JPanel();
@@ -26,6 +28,7 @@ public class searchFlight extends JFrame implements ActionListener {
         menuLabel.setBounds(25, 120, 140, 40);
         menuLabel.setFont(new Font(null ,Font.BOLD,40 ));
         signInButton.setBounds(20, 190, 120, 40);
+        signInButton.addActionListener(this);
         thingsToDoButton.setBounds(20, 240, 120, 40);
 
         menuPanel.add(menuLabel);
@@ -113,12 +116,16 @@ public class searchFlight extends JFrame implements ActionListener {
         arrivalLabel.setFont(new Font(null, Font.PLAIN,20));
         arrivalLabel.setBounds(615, 340, 100, 25);
         JLabel J_Label = new JLabel("Date Selected:");
-        final JTextField J_Text_Field = new JTextField(25);
+        J_Text_Field = new JTextField(25);
         J_Text_Field2 = new JTextField(25);
         J_Text_Field.setBounds(720,300,100,25);
         J_Text_Field2.setBounds(720,340,100,25);
         J_Text_Field2.addActionListener(this);
-        
+
+        searchFlightButton = new JButton("Search");
+        searchFlightButton.setFont(new Font(null,Font.PLAIN,20));
+        searchFlightButton.setBounds(800,180,100,30);
+        searchFlightButton.addActionListener(this);        
         
         JButton calendarButton1 = new JButton("Calendar");
         calendarButton2 = new JButton("Calendar");
@@ -127,7 +134,8 @@ public class searchFlight extends JFrame implements ActionListener {
         calendarButton2.setBounds(840,340,100,25); 
  
         final JFrame calendarFrame = new JFrame();
- 
+
+
         calendarButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 J_Text_Field.setText(new DatePick(calendarFrame).Set_Picked_Date());
@@ -135,7 +143,7 @@ public class searchFlight extends JFrame implements ActionListener {
             }
         
         });  
-        /*  
+          
         calendarButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 
@@ -143,7 +151,7 @@ public class searchFlight extends JFrame implements ActionListener {
             }
         
         });
-         */   
+        add(searchFlightButton);    
         add(selectDates); 
         add(selectDestinationsLabel);
         add(multiCityButton);   
@@ -164,6 +172,7 @@ public class searchFlight extends JFrame implements ActionListener {
         add(fromBox);
         add(headerLabel);
         add(imageLabel);
+        
         setResizable(true);
         setLayout(null);
         pack();
@@ -175,6 +184,9 @@ public class searchFlight extends JFrame implements ActionListener {
 
 
 
+    /* (non-Javadoc)
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == twowayButton){
             flight2Label.setBounds(540,500,80,100);
@@ -192,15 +204,37 @@ public class searchFlight extends JFrame implements ActionListener {
 
         }
         if(e.getSource() == signInButton){
-            logInPage signInpage = new logInPage();
-            changePanel(signInpage);
+            this.dispose();
+            new logInPage();
+
         }
+        if(e.getSource()==searchFlightButton){
+            String departAirport, arrivalAirport, departDate, arrivalDate;
+            departAirport = (String)fromBox.getSelectedItem();
+            System.out.println("From search flight:");
+            System.out.println(departAirport);
+            //passengerInfo.setDepartAirport(departAirport);
+            //flightDetails.setDepartAirport(departAirport);
+            arrivalAirport = (String)toBox.getSelectedItem();
+            //passengerInfo.setArrivalAirport(arrivalAirport);
+            departDate = J_Text_Field.getText();
+            //passengerInfo.setDepartDate(departDate);
+            arrivalDate = J_Text_Field2.getText();
+            //passengerInfo.setArrivalDate(arrivalDate);
+            passengerInfo passengerDetails = new passengerInfo(departAirport,arrivalAirport,departDate,arrivalDate);
+            this.dispose();
+            frame = new baseFrame();
+            new flightDetails(frame);
+         
+        }
+
+
         
     }  
-     
+///*        
     public static void main(String[] args){
         searchFlight newFrame = new searchFlight();
     }
-    
+//*/
    
 }

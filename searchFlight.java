@@ -70,7 +70,7 @@ public class searchFlight extends JFrame implements ActionListener {
         });
         */
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        String destinations[] = {"","Toronto", "Montreal", "Paris", "New York"};
+        String destinations[] = {"  -- Select --","Toronto", "Montreal", "Paris", "New York"};
         fromBox = new JComboBox(destinations);
         toBox = new JComboBox(destinations);
         comboboxAuto.enable(fromBox);

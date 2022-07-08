@@ -11,14 +11,15 @@ public class flightDetails extends baseFrame implements ActionListener{
     private static baseFrame frame;
     HashMap<String,String> airportCodes;
     JLabel departLabel, fromLabel, toLabel, fromCode,toCode,fromAirportLabel,toAirportLabel,
-    selectSeatsLabel,departDateLabel,departDateValue,bookingLabel;
+    selectSeatsLabel,departDateLabel,departDateValue,bookingLabel,selectAirlyne;
     static String fromDestination;
     JPanel departInfo,seatsCollectionA,seatsCollectionB;
-    JButton bookingButton;
+    JButton bookingButton,nextPageButton;
     //JScrollPane scrollPane;
     JButton[] allSeats;
     Font headerFont1,headerFont15,headerFont20;
     String fromAirport,toAirport,departDate, arrivalDate;
+    JComboBox airlyneCollection;
     public flightDetails (baseFrame mainFrame){
         super();
         this.frame = mainFrame;
@@ -36,6 +37,8 @@ public class flightDetails extends baseFrame implements ActionListener{
         addSeats();
         add(seatsCollectionA);
         add(seatsCollectionB);
+        addAirlyne();
+        confirmBooking();
         airportCodes = new HashMap<String, String>();
         airportCodes.put("Toronto","TOR");
         airportCodes.put("Montreal","MON");
@@ -94,11 +97,7 @@ public class flightDetails extends baseFrame implements ActionListener{
         departLabel.setFont(headerFont15);
         departDateLabel.setBounds(200,235,50,20);
 
-        bookingLabel = new JLabel("Booking");
-        bookingLabel.setBounds(1000,150,250,25);
-        bookingLabel.setFont(headerFont1);
 
-        add(bookingLabel);
         add(departDateValue);
         add(departDateLabel);
         add(toAirportLabel);
@@ -137,6 +136,35 @@ public class flightDetails extends baseFrame implements ActionListener{
         add(selectSeatsLabel);
 
     }    
+    private void addAirlyne(){
+        selectAirlyne = new JLabel("Select Airlyne");
+        selectAirlyne.setFont(headerFont1);
+        selectAirlyne.setBounds(180,280,200,20);
+        String flights[] = {"    -- Please Select --","Canadian Airlyne", "French Airlyne","American Airlyne"};
+        airlyneCollection = new JComboBox<>(flights);
+        airlyneCollection.setBounds(180,320,150,20);
+        add(selectAirlyne);
+        add(airlyneCollection);
+
+    }
+    private void confirmBooking(){
+        bookingLabel = new JLabel("Booking");
+        bookingLabel.setBounds(1000,150,250,25);
+        bookingLabel.setFont(headerFont1);        
+        bookingButton = new JButton("Confirm");
+        bookingButton.setFont(headerFont20);
+        bookingButton.setBounds(1000,190,100,25);
+        bookingButton.addActionListener(this);
+        nextPageButton = new JButton("Next");
+        nextPageButton.setFont(headerFont20);
+        nextPageButton.setBounds(1000,220, 100, 25);
+        nextPageButton.addActionListener(this);
+
+        add(bookingLabel);
+        add(bookingButton);
+        add(nextPageButton);        
+
+    }
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         

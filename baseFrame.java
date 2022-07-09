@@ -38,7 +38,11 @@ public class baseFrame extends JFrame implements ActionListener {
         menuLabel.setFont(new Font(null ,Font.BOLD,40 ));
         menuPanel.setBackground(Color.BLUE);
         signInButton.setBounds(20, 190, 120, 40);
-        signInButton.addActionListener(this);
+        signInButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae){
+                new logInPage();
+            }
+        });
         thingsToDoButton.setBounds(20, 240, 120, 40);
     
         menuPanel.add(menuLabel);
@@ -64,7 +68,7 @@ public class baseFrame extends JFrame implements ActionListener {
         add(menuPanel);
         add(headerPanel);
         //pack();
-        //setVisible(true);
+        //setVisible(true);      
     }
 	public void changePanel(JPanel panel) {
 		getContentPane().removeAll();
@@ -73,11 +77,13 @@ public class baseFrame extends JFrame implements ActionListener {
 		revalidate();
 		repaint();
 	}    
-
+ 
     public void actionPerformed(ActionEvent e) {
 
+
+        }
         
-    }
+    
 /*   
     public static void main(String[] args){
         baseFrame frame = new baseFrame();

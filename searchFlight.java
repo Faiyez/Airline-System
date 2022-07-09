@@ -211,8 +211,8 @@ public class searchFlight extends JFrame implements ActionListener {
         if(e.getSource()==searchFlightButton){
             String departAirport, arrivalAirport, departDate, arrivalDate;
             departAirport = (String)fromBox.getSelectedItem();
-            System.out.println("From search flight:");
-            System.out.println(departAirport);
+            //System.out.println("From search flight:");
+            //.out.println(departAirport);
             //passengerInfo.setDepartAirport(departAirport);
             //flightDetails.setDepartAirport(departAirport);
             arrivalAirport = (String)toBox.getSelectedItem();

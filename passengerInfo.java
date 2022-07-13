@@ -4,7 +4,7 @@
 
 
 public class passengerInfo {
-    static String fromDestination,toDestination,departingDate,arrivalDate;
+    static String fromDestination,toDestination,departingDate,arrivalDate,seatNumber,selectedFlight;
     passengerInfo(String from,String to,String depart,String arrival){
         this.fromDestination = from;
         this.toDestination = to;
@@ -14,9 +14,7 @@ public class passengerInfo {
     public static void setDepartAirport(String airport){
         fromDestination = airport;
     }
-    public static String getDepartAirport(){
-        System.out.println("From getDepartAirport passengerInfo:");
-        System.out.println(fromDestination);        
+    public static String getDepartAirport(){   
         return fromDestination;
     }  
     public static void setArrivalAirport(String airport){
@@ -36,6 +34,18 @@ public class passengerInfo {
     }          
     public String getarrivalDate(){
         return arrivalDate;
+    }
+    public static void setSeatNumber(String seat){
+        seatNumber = seat;       
+    }
+    public static String getSeatNumber(){             
+        return seatNumber;
+    }
+    public static void setSelectedFlight(String flight){
+        selectedFlight = flight;
+    }
+    public static String getSelectedFlight(){
+        return selectedFlight;
     }
 
 }

@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class flightDetails extends baseFrame implements ActionListener{
     //private static baseFrame frame;
     private static baseFrame frame;
-    HashMap<String,String> airportCodes;
+    static HashMap<String,String> airportCodes;
     JLabel departLabel, fromLabel, toLabel, fromCode,toCode,fromAirportLabel,toAirportLabel,
     selectSeatsLabel,departDateLabel,departDateValue,bookingLabel,selectAirlyne;
     static String fromDestination;
@@ -60,7 +60,7 @@ public class flightDetails extends baseFrame implements ActionListener{
         airportCodes.put("New York","NYC");
     }
 
-    private void addDepartDetails(){
+    void addDepartDetails(){
         //allSeats = new JButton();
         departLabel = new JLabel("Depart");
         departLabel.setFont(new Font(null, Font.BOLD,20));
@@ -122,8 +122,8 @@ public class flightDetails extends baseFrame implements ActionListener{
             allSeats[i].addActionListener(this);
             seatsCollectionA.add(allSeats[i]);
         }
-        for(int i=0;i<18;i++){
-            String value = "B" + String.valueOf(i);
+        for(int i=18;i<36;i++){
+            String value = "B" + String.valueOf(i-18);
             allSeats[i] = new JButton(value);
             allSeats[i].setFont(new Font(null,Font.BOLD,15));
             allSeats[i].setSize(5, 5);
@@ -166,7 +166,19 @@ public class flightDetails extends baseFrame implements ActionListener{
 
     }
     public void actionPerformed(ActionEvent e) {
+        for(int i = 0;i < 36; i++){
+            if(e.getSource() == allSeats[i]){
+                String seatName = allSeats[i].getText();
+                passengerInfo.setSeatNumber(seatName);
+                passengerInfo.getSeatNumber();
+                //System.out.println("From flight details:");
+                //System.out.println(seatName);
+            }
+
+        }
         if(e.getSource() == nextPageButton){
+            String flightSelected = (String)airlyneCollection.getSelectedItem();
+            passengerInfo.setSelectedFlight(flightSelected);
             this.dispose();
             new passengerDetails(frame);
 

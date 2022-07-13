@@ -4,171 +4,33 @@ import java.awt.event.*;
 import javax.swing.ImageIcon;
 
 public class passengerDetails extends baseFrame implements ActionListener {
-    private static baseFrame frame;    
+    private static baseFrame frame;
+    private backGroundPanel backGroundPanel;        
     JLabel headerLabel, passengerHeader, selectionLabel, 
     departLabel, firstLabel, lastLabel, passportLabel, fromLabel, 
     toLabel,imageLabel, headerImage, nameLabel, flightsHeader, passengerLabel,
-    departingLabel, arrivalLabel ;
+    departingLabel, arrivalLabel, toCode, fromCode, seatNo , flightSelected,
+    toAirportLabel,fromAirportLabel, departDateValue,departDateLabel ;
     JTextField firstName, lastName, passportNo;
     JPanel menuPanel, headerPanel;
-    JComboBox fromBox, toBox;
-
+    Font bold30,bold25,plain20,plain25;
+    //static String fromAirport,toAirport,departDate, arrivalDate;
     passengerDetails(baseFrame mainFrame){
         super();
         this.frame = mainFrame;
-        //Menu Panel and its components
-/*         
-        menuPanel = new JPanel();
-        menuPanel.setBackground(Color.WHITE);
-        menuPanel.setBounds(0, 0, 160, 1400);
-        menuPanel.setLayout(null);
-        JButton signInButton = new JButton("Sign In");
-        JButton thingsToDoButton = new JButton("Things To Do");
-        JLabel menuLabel = new JLabel("Menu");
-
-        menuLabel.setBounds(25, 120, 140, 40);
-        menuLabel.setFont(new Font(null ,Font.BOLD,40 ));
-        signInButton.setBounds(20, 190, 120, 40);
-        thingsToDoButton.setBounds(20, 240, 120, 40);
-
-        menuPanel.add(menuLabel);
-        menuPanel.add(signInButton);
-        menuPanel.add(thingsToDoButton);
-
-        headerPanel = new JPanel();
-        headerImage = new JLabel();
-        headerImage.setIcon(new ImageIcon("sky.jpg"));
-        
-        headerPanel.setLayout(null);
-        nameLabel = new JLabel("Airlyne Booking System");
-        nameLabel.setBounds(500,20, 500, 50);
-        nameLabel.setFont(new Font(null, Font.ITALIC, 30));
-        headerPanel.setBounds(0,0,1400,100);
-        headerPanel.add(nameLabel);
-        headerPanel.add(headerImage);
-*/        
-
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-/* 
-        String destinations[] = {"","Toronto", "Montreal", "Paris", "New York"};
-        fromBox = new JComboBox(destinations);
-        toBox = new JComboBox(destinations);
-        comboboxAuto.enable(fromBox);
-        comboboxAuto.enable(toBox);
-*/        
-        this.setPreferredSize(size);
-        //this.setPreferredSize(new Dimension(1200, 600));
-        passengerLabel = new JLabel("Passenger Information");
+        bold30 = new Font(null, Font.BOLD,30);
+        bold25 = new Font(null, Font.BOLD,25);
+        plain20 = new Font(null,Font.PLAIN,20);
+        plain25 = new Font(null,Font.PLAIN,25);
         imageLabel = new JLabel();
-        //flightsHeader = new JLabel("Select Flights");
         imageLabel.setIcon(new ImageIcon("world.jpg"));
-        //fromLabel = new JLabel("From: ");
-        //toLabel = new JLabel("To: ");
-        // = new JLabel("Airlyne Booking System");
-        //departLabel = new JLabel("Depart");
-        passengerHeader = new JLabel("Passenger Information");
-        firstLabel = new JLabel("First Name: ");
-        lastLabel = new JLabel("Last Name: ");
-        firstName = new JTextField();
-        lastName = new JTextField();
-        passportNo = new JTextField();
-        passportLabel = new JLabel("Passport NO: ");
-
-        passengerLabel.setFont(new Font(null, Font.BOLD, 20));
-        passengerLabel.setBounds(240, 140, 250, 25);
-        //.setFont(new Font(null, Font.BOLD, 20));
-        //flightsHeader.setBounds(655, 140, 250, 25);
         imageLabel.setBounds(0, 0, 1400, 1400);
-        //toBox.setBounds(700, 230, 100, 20);
-        //toLabel.setBounds(640, 230, 100, 20);
-        //toLabel.setFont(new Font(null, Font.PLAIN, 15));
-        //fromLabel.setBounds(640, 200, 100, 20);
-        //fromLabel.setFont(new Font(null, Font.PLAIN, 15));
-        //fromBox.setBounds(700, 200, 100 , 20);
-        passportNo.setBounds(340, 260, 100, 20);
-        passportLabel.setBounds(240, 260, 100, 20);
-        passportLabel.setFont(new Font(null, Font.PLAIN, 15));
-        lastLabel.setBounds(240, 230, 100, 20);
-        lastLabel.setFont(new Font(null, Font.PLAIN, 15));
-        lastName.setBounds(340, 230, 100, 20);
-        lastName.setFont(new Font(null, Font.PLAIN, 15));
-        firstName.setBounds(340, 200, 100, 20);
-        firstLabel.setBounds(240, 200, 100, 20);
-        firstLabel.setFont(new Font(null, Font.PLAIN, 15));
-        //headerLabel.setBounds(470, 10, 500, 50);
-        //headerLabel.setFont(new Font(null, Font.ITALIC, 30));
-        passengerHeader.setBounds(40, 40, 250, 50);
-        passengerHeader.setFont(new Font(null, Font.BOLD, 20));
-        //departLabel.setBounds(15, 15, 50, 20);
-        //departLabel.setFont(new Font(null, Font.BOLD, 20));
-
-        //add(departLabel);
-        // Calendar implementation
-/* 
-        departLabel = new JLabel("Departing");
-        departLabel.setBounds(640, 260, 100, 20);
-        arrivalLabel = new JLabel("Arrival");
-        arrivalLabel.setBounds(640, 290, 100, 20);
-        JLabel J_Label = new JLabel("Date Selected:");
-        final JTextField J_Text_Field = new JTextField(20);
-        final JTextField J_Text_Field2 = new JTextField(20);
-        J_Text_Field.setBounds(740,260,100,20);
-        J_Text_Field2.setBounds(740,290,100,20);
-        
-        JButton calendarButton1 = new JButton("Calendar");
-        JButton calendarButton2 = new JButton("Calendar");
-        calendarButton1.setBounds(840,260,100,20); 
-        calendarButton2.setBounds(840,290,100,20); 
-      
-        JPanel calendarPanel = new JPanel();
-        calendarPanel.setBounds(250, 250, 160, 1400);
-        calendarPanel.add(J_Label);
-        calendarPanel.add(J_Text_Field);
-        calendarPanel.add(J_Text_Field2);
-        calendarPanel.add(calendarButton);
-
-        final JFrame calendarFrame = new JFrame();
-        //getContentPane().add(calendarPanel);
-        //calendarFrame.pack();
-        //calendarFrame.setVisible(true);
-        calendarButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                J_Text_Field.setText(new DatePick(calendarFrame).Set_Picked_Date());
-                //J_Text_Field2.setText(new DatePick(calendarFrame).Set_Picked_Date());
-            }
-        
-        });    
-        calendarButton2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                //J_Text_Field.setText(new DatePick(calendarFrame).Set_Picked_Date());
-                J_Text_Field2.setText(new DatePick(calendarFrame).Set_Picked_Date());
-            }
-        
-        });  
-/* */                  
-        //add(calendarButton2);
-        //add(calendarButton1);
-        //add(J_Text_Field);
-        //add(J_Text_Field2);
-        //add(departLabel);
-        //(arrivalLabel);
-        add(passengerLabel);
-       // add(flightsHeader);
-        //add(headerPanel);
-        //add(menuPanel);
-        //add(toBox);
-        //add(toLabel);
-        //(fromLabel);
-        //add(fromBox);
-        add(passportNo);
-        add(passportLabel);
-        add(lastName);
-        add(lastLabel);
-        add(firstName);
-        add(firstLabel);
-        //add(passengerHeader);
-        //add(headerLabel);
-        add(imageLabel);
+        //Menu Panel and its components
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();       
+        this.setPreferredSize(size);
+        addPassengerInfo();
+        addSummary();
+        add(imageLabel);        
         setResizable(true);
         setLayout(null);
         pack();
@@ -178,7 +40,97 @@ public class passengerDetails extends baseFrame implements ActionListener {
 
     }
 
+    private void addPassengerInfo(){
+        passengerLabel = new JLabel("Passenger Information");
+        firstLabel = new JLabel("First Name: ");
+        lastLabel = new JLabel("Last Name: ");
+        firstName = new JTextField();
+        lastName = new JTextField();
+        passportNo = new JTextField();
+        passportLabel = new JLabel("Passport NO: ");
 
+        passengerLabel.setFont(bold25);
+        passengerLabel.setBounds(240, 140, 280, 35);
+        passportNo.setBounds(420, 260, 180, 25);
+        passportLabel.setBounds(240, 260, 200, 25);
+        passportLabel.setFont(plain20);
+        lastLabel.setBounds(240, 230, 200, 25);
+        lastLabel.setFont(plain20);
+        lastName.setBounds(420, 230, 180, 25);
+        lastName.setFont(plain20);
+        firstName.setBounds(420, 200, 180, 25);
+        firstLabel.setBounds(240, 200, 200, 25);
+        firstLabel.setFont(plain20);
+       
+        add(passengerLabel);
+        add(passportNo);
+        add(passportLabel);
+        add(lastName);
+        add(lastLabel);
+        add(firstName);
+        add(firstLabel);
+    }
+
+    public void addSummary(){
+        //allSeats = new JButton();
+        departLabel = new JLabel("Summary");
+        departLabel.setFont(bold25);
+        departLabel.setBounds(835,150,250,25);
+        fromLabel = new JLabel("FROM");
+        fromLabel.setFont(new Font(null,Font.BOLD,15));
+        fromLabel.setBounds(820,180,100,15);
+        toLabel = new JLabel("TO");
+        toLabel.setFont(new Font(null,Font.BOLD,15));
+        toLabel.setBounds(900,180,100,15);
+
+        String toAirport = passengerInfo.getArrivalAirport();
+        //System.out.println("From passenger details");
+        //System.out.println(toAirport);
+        toCode = new JLabel(flightDetails.airportCodes.get(toAirport));
+        toCode.setFont(new Font(null,Font.BOLD,20));
+        toCode.setBounds(890,200,50,20);
+        String fromAirport = passengerInfo.getDepartAirport();
+        fromCode = new JLabel(flightDetails.airportCodes.get(fromAirport));
+        fromCode.setFont(new Font(null,Font.BOLD,20));
+        fromCode.setBounds(800,200,50,20);
+        fromCode.setBackground(Color.RED);
+        fromAirportLabel = new JLabel(fromAirport);
+        fromAirportLabel.setFont(new Font(null,Font.BOLD,15));
+        fromAirportLabel.setBounds(780,220,80,15);
+        
+        toAirportLabel = new JLabel(toAirport);
+        toAirportLabel.setFont(new Font(null,Font.BOLD,15));
+        toAirportLabel.setBounds(880,220,80,15);
+
+        String departDate = passengerInfo.getDepartDate();
+        departDateValue = new JLabel(departDate);
+        departDateValue.setFont(plain20);
+        departDateValue.setBounds(800,250,120,20);
+        departDateLabel = new JLabel("Date");
+        departLabel.setFont(plain25);
+        departDateLabel.setBounds(800,235,50,20);
+        String flightSeat = passengerInfo.getSeatNumber();
+        seatNo = new JLabel("SeatNo:  " + flightSeat);
+        seatNo.setFont(plain20);
+        seatNo.setBounds(800,270,200,20);     
+        flightSelected = new JLabel("Flight Selected: " + passengerInfo.getSelectedFlight());   
+        flightSelected.setFont(plain20);
+        flightSelected.setBounds(800,290,400,20);
+
+        add(flightSelected);
+        add(seatNo);
+        add(departDateValue);
+        add(departDateLabel);
+        add(toAirportLabel);
+        add(fromAirportLabel);
+        add(toCode);
+        add(fromCode);
+        add(toLabel);
+        add(departLabel);
+        add(fromLabel);
+  
+    }
+    
 
     public void actionPerformed(ActionEvent e) {
     

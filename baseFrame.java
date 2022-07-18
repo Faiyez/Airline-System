@@ -23,12 +23,17 @@ public class baseFrame extends JFrame implements ActionListener {
     JComboBox fromBox, toBox;
     JButton oneWayButton, twowayButton, multiCityButton, calendarButton2
     ,signInButton, thingsToDoButton;
+    static JButton backButton;
     JTextField J_Text_Field2;
     JFrame frame;
     logInPage signInpage;
+    Font headerFont20;
     baseFrame(){
+
+        headerFont20 = new Font(null,Font.BOLD,20);
+
         menuPanel = new JPanel();
-        menuPanel.setBackground(Color.WHITE);
+        menuPanel.setBackground(Color.decode("#45BD85"));
         menuPanel.setBounds(0, 0, 160, 1400);
         menuPanel.setLayout(null);
         signInButton = new JButton("Sign In");
@@ -36,7 +41,7 @@ public class baseFrame extends JFrame implements ActionListener {
         JLabel menuLabel = new JLabel("Menu");
         menuLabel.setBounds(25, 120, 140, 40);
         menuLabel.setFont(new Font(null ,Font.BOLD,40 ));
-        menuPanel.setBackground(Color.BLUE);
+        menuPanel.setBackground(Color.decode("#45BD85"));
         signInButton.setBounds(20, 190, 120, 40);
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae){
@@ -51,8 +56,8 @@ public class baseFrame extends JFrame implements ActionListener {
     
         headerPanel = new JPanel();
         headerImage = new JLabel();
-        headerImage.setIcon(new ImageIcon("sky.jpg"));
-        headerPanel.setBackground(Color.CYAN);
+        //headerImage.setIcon(new ImageIcon("sky.jpg"));
+        headerPanel.setBackground(Color.decode("#B8F6FD"));
         headerPanel.setLayout(null);
         nameLabel = new JLabel("Airlyne Booking System");
         nameLabel.setBounds(500,20, 500, 50);
@@ -61,15 +66,26 @@ public class baseFrame extends JFrame implements ActionListener {
         headerPanel.add(nameLabel);
         headerPanel.add(headerImage);
 
+        
+
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         this.setPreferredSize(size);
         
         /* Adding elements to frame */
-        add(menuPanel);
+        addBackButton();
         add(headerPanel);
+        add(menuPanel);       
         //pack();
         //setVisible(true);      
     }
+    private void addBackButton(){
+        backButton = new JButton("Back");
+        backButton.setFont(headerFont20);
+        backButton.setBounds(180,500, 100, 25);
+        backButton.addActionListener(this);
+        add(backButton);
+                
+    }    
 	public void changePanel(JPanel panel) {
 		getContentPane().removeAll();
 		getContentPane().add(panel, BorderLayout.CENTER);

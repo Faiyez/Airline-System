@@ -1,6 +1,9 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "JPlanner.jar"
+        "JPlanner.jar",
+        "QR_Generator_Libs/qrgen-1.0.jar",
+        "QR_Generator_Libs/zxing-core-1.7.jar",
+        "QR_Generator_Libs/zxing-j2se-1.7.jar"
     ]
 }

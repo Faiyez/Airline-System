@@ -14,7 +14,7 @@ public class flightDetails extends baseFrame implements ActionListener{
     selectSeatsLabel,departDateLabel,departDateValue,bookingLabel,selectAirlyne;
     static String fromDestination;
     JPanel departInfo,seatsCollectionA,seatsCollectionB;
-    JButton bookingButton,nextPageButton;
+    JButton bookingButton,nextPageButton,backButton;
     //JScrollPane scrollPane;
     JButton[] allSeats;
     Font headerFont1,headerFont15,headerFont20;
@@ -165,6 +165,7 @@ public class flightDetails extends baseFrame implements ActionListener{
         add(nextPageButton);        
 
     }
+
     public void actionPerformed(ActionEvent e) {
         for(int i = 0;i < 36; i++){
             if(e.getSource() == allSeats[i]){
@@ -182,6 +183,10 @@ public class flightDetails extends baseFrame implements ActionListener{
             this.dispose();
             new passengerDetails(frame);
 
+        }
+        if(e.getSource() == baseFrame.backButton){
+            this.dispose();
+            new searchFlight();
         }
         
     }

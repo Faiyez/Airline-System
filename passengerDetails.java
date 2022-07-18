@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
+
+import com.google.zxing.qrcode.encoder.QRCode;
 
 public class passengerDetails extends baseFrame implements ActionListener {
     private static baseFrame frame;
@@ -11,6 +15,7 @@ public class passengerDetails extends baseFrame implements ActionListener {
     toLabel,imageLabel, headerImage, nameLabel, flightsHeader, passengerLabel,
     departingLabel, arrivalLabel, toCode, fromCode, seatNo , flightSelected,
     toAirportLabel,fromAirportLabel, departDateValue,departDateLabel ;
+    JButton bookingButton,viewTicketButton;
     JTextField firstName, lastName, passportNo;
     JPanel menuPanel, headerPanel;
     Font bold30,bold25,plain20,plain25;
@@ -116,7 +121,17 @@ public class passengerDetails extends baseFrame implements ActionListener {
         flightSelected = new JLabel("Flight Selected: " + passengerInfo.getSelectedFlight());   
         flightSelected.setFont(plain20);
         flightSelected.setBounds(800,290,400,20);
+        bookingButton = new JButton("Confirm");
+        bookingButton.setFont(plain20);
+        bookingButton.setBounds(800,320,150,20);
+        bookingButton.addActionListener(this);
+        viewTicketButton = new JButton("View Ticket");
+        viewTicketButton.setFont(plain20);
+        viewTicketButton.setBounds(800,345, 150, 20);
+        viewTicketButton.addActionListener(this);
 
+        add(bookingButton);
+        add(viewTicketButton);
         add(flightSelected);
         add(seatNo);
         add(departDateValue);
@@ -133,7 +148,19 @@ public class passengerDetails extends baseFrame implements ActionListener {
     
 
     public void actionPerformed(ActionEvent e) {
-    
+        if(e.getSource() == viewTicketButton){
+            try {
+                new QRcode();
+            } catch (Exception e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        if(e.getSource() == baseFrame.backButton){
+            this.dispose();
+            new flightDetails(frame);
+
+        }
     
     }
 /*  

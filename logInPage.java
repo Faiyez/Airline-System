@@ -40,7 +40,7 @@ public class logInPage extends JFrame implements ActionListener{
         add(messageLabel);
         add(loginLabel);
         add(passwordLabel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500,500);
         setLayout(null);
         setVisible(true);  

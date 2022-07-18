@@ -1,4 +1,7 @@
 import javax.swing.*;
+
+import org.w3c.dom.css.RGBColor;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -18,7 +21,8 @@ public class searchFlight extends JFrame implements ActionListener {
 
     searchFlight(){
         menuPanel = new JPanel();
-        menuPanel.setBackground(Color.WHITE);
+        //Color menuColor = Color.decode("#45BD85");
+        menuPanel.setBackground(Color.decode("#45BD85"));
         menuPanel.setBounds(0, 0, 160, 1400);
         menuPanel.setLayout(null);
         signInButton = new JButton("Sign In");
@@ -34,11 +38,11 @@ public class searchFlight extends JFrame implements ActionListener {
         menuPanel.add(menuLabel);
         menuPanel.add(signInButton);
         menuPanel.add(thingsToDoButton);
-
+        
         headerPanel = new JPanel();
         headerImage = new JLabel();
-        headerImage.setIcon(new ImageIcon("sky.jpg"));
-        
+        //headerImage.setIcon(new ImageIcon("euroTile.jpg"));
+        headerPanel.setBackground(Color.decode("#B8F6FD"));
         headerPanel.setLayout(null);
         nameLabel = new JLabel("Airlyne Booking System");
         nameLabel.setBounds(500,20, 500, 50);
@@ -84,8 +88,11 @@ public class searchFlight extends JFrame implements ActionListener {
         selectDates.setBounds(675,250,250,25);
 
         imageLabel = new JLabel();
+        imageLabel.setBackground(Color.decode("#8DE5D9"));
+        imageLabel.setBounds(0, 0, 1400, 840);        
         flightsHeader = new JLabel("Select Flights");
-        imageLabel.setIcon(new ImageIcon("world.jpg"));
+
+        //imageLabel.setIcon(new ImageIcon("euroTile.jpg"));
         fromLabel = new JLabel("From: ");
         toLabel = new JLabel("To: ");
         headerLabel = new JLabel("Airlyne Booking System");
@@ -97,7 +104,7 @@ public class searchFlight extends JFrame implements ActionListener {
 
         flightsHeader.setFont(new Font(null, Font.BOLD, 40));
         flightsHeader.setBounds(555, 120, 450, 50);
-        imageLabel.setBounds(0, 0, 1400, 1400);
+
         toBox.setBounds(320, 300, 100, 20);
         toLabel.setBounds(240, 300, 80, 20);
         toLabel.setFont(new Font(null, Font.PLAIN, 20));
@@ -151,6 +158,7 @@ public class searchFlight extends JFrame implements ActionListener {
             }
         
         });
+
         add(searchFlightButton);    
         add(selectDates); 
         add(selectDestinationsLabel);
@@ -171,7 +179,7 @@ public class searchFlight extends JFrame implements ActionListener {
         add(fromLabel);
         add(fromBox);
         add(headerLabel);
-        add(imageLabel);
+        add(imageLabel);        
         
         setResizable(true);
         setLayout(null);
@@ -180,6 +188,12 @@ public class searchFlight extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+    }
+
+
+
+    private int RGBColor(int i, int j, int k) {
+        return 0;
     }
 
 
@@ -204,7 +218,7 @@ public class searchFlight extends JFrame implements ActionListener {
 
         }
         if(e.getSource() == signInButton){
-            this.dispose();
+            //this.dispose();
             new logInPage();
 
         }

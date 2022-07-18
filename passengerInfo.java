@@ -4,7 +4,8 @@
 
 
 public class passengerInfo {
-    static String fromDestination,toDestination,departingDate,arrivalDate,seatNumber,selectedFlight;
+    static String fromDestination,toDestination,departingDate,arrivalDate,
+    seatNumber,selectedFlight, firstName, lastName, passportNo;
     passengerInfo(String from,String to,String depart,String arrival){
         this.fromDestination = from;
         this.toDestination = to;
@@ -47,5 +48,22 @@ public class passengerInfo {
     public static String getSelectedFlight(){
         return selectedFlight;
     }
-
+    public static void setFirtsName(String name){
+        firstName = name;
+    }
+    public static String getFirstName(){
+        return firstName;
+    }
+    public static void setLastName(String name){
+        lastName = name;
+    }
+    public static String getLastName(){
+        return lastName;
+    }
+    public static void setPassportNo(String number){
+        passportNo = number;
+    }
+    public static String getPassportNo(){
+        return passportNo;
+    }    
 }

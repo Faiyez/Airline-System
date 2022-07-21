@@ -8,8 +8,7 @@ import javax.swing.ImageIcon;
 import com.google.zxing.qrcode.encoder.QRCode;
 
 public class passengerDetails extends baseFrame implements ActionListener {
-    private static baseFrame frame;
-    private backGroundPanel backGroundPanel;        
+    private static baseFrame frame;        
     JLabel headerLabel, passengerHeader, selectionLabel, 
     departLabel, firstLabel, lastLabel, passportLabel, fromLabel, 
     toLabel,imageLabel, headerImage, nameLabel, flightsHeader, passengerLabel,

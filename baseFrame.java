@@ -17,9 +17,10 @@ import javax.swing.JTextField;
 public class baseFrame extends JFrame implements ActionListener {
     JLabel headerLabel, selectionLabel,selectDestinationsLabel,
     departLabel, fromLabel, flight2Label,
-    toLabel,imageLabel, headerImage, nameLabel, flightsHeader,
-    departingLabel, arrivalLabel, selectDates ;
-    JPanel menuPanel, headerPanel;
+    toLabel, headerImage, flightsHeader,
+    departingLabel, arrivalLabel, selectDates;
+    static JLabel imageLabel,nameLabel;
+    JPanel menuPanel, headerPanel,bottomPanel;
     JComboBox fromBox, toBox;
     JButton oneWayButton, twowayButton, multiCityButton, calendarButton2
     ,signInButton, thingsToDoButton;
@@ -28,13 +29,13 @@ public class baseFrame extends JFrame implements ActionListener {
     JFrame frame;
     logInPage signInpage;
     Font headerFont20;
-    baseFrame(){
+    public baseFrame(){
 
         headerFont20 = new Font(null,Font.BOLD,20);
 
         menuPanel = new JPanel();
         menuPanel.setBackground(Color.decode("#45BD85"));
-        menuPanel.setBounds(0, 0, 160, 1400);
+        menuPanel.setBounds(0, 0, 160, 720);
         menuPanel.setLayout(null);
         signInButton = new JButton("Sign In");
         thingsToDoButton = new JButton("Things To Do");
@@ -62,22 +63,37 @@ public class baseFrame extends JFrame implements ActionListener {
         nameLabel = new JLabel("Airlyne Booking System");
         nameLabel.setBounds(500,20, 500, 50);
         nameLabel.setFont(new Font(null, Font.ITALIC, 30));
-        headerPanel.setBounds(0,0,1400,100);
+        headerPanel.setBounds(0,0,1280,100);
         headerPanel.add(nameLabel);
         headerPanel.add(headerImage);
 
-        
+        //imageLabel = new JLabel();
+       // imageLabel.setIcon(new ImageIcon("world2Cropped.jpg"));
+       // imageLabel.setBounds(140, 100, 1140, 660);
+              
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         this.setPreferredSize(size);
         
         /* Adding elements to frame */
+       
         addBackButton();
+        addBottomPanel();
         add(headerPanel);
-        add(menuPanel);       
+        add(menuPanel);   
+        
+        //addImageLabel();    
         //pack();
         //setVisible(true);      
     }
+     
+    public static void setImageLabel(JLabel label){
+        //label = new JLabel();
+        label.setIcon(new ImageIcon("world2Cropped.jpg"));
+        label.setBounds(140, 100, 1140, 660);      
+    }
+
+
     private void addBackButton(){
         backButton = new JButton("Back");
         backButton.setFont(headerFont20);
@@ -86,18 +102,32 @@ public class baseFrame extends JFrame implements ActionListener {
         add(backButton);
                 
     }    
+    public void addBottomPanel(){
+        bottomPanel = new JPanel();
+        bottomPanel.setBounds(0,620,1280,200);
+        bottomPanel.setBackground(Color.decode("#FF7700"));
+
+        add(bottomPanel);
+    }
 	public void changePanel(JPanel panel) {
 		getContentPane().removeAll();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		getContentPane().doLayout();
 		revalidate();
 		repaint();
-	}    
+	} 
+
+    public static void customJLabel(JLabel label){
+        label.setFont(new Font(null, Font.BOLD, 20));
+        label.setForeground(Color.WHITE);
+        label.setBackground(Color.RED);
+        label.setOpaque(true);               
+    }    
  
     public void actionPerformed(ActionEvent e) {
 
 
-        }
+    }
         
     
 /*   

@@ -28,8 +28,8 @@ public class passengerDetails extends baseFrame implements ActionListener {
         plain20 = new Font(null,Font.PLAIN,20);
         plain25 = new Font(null,Font.PLAIN,25);
         imageLabel = new JLabel();
-        imageLabel.setIcon(new ImageIcon("world.jpg"));
-        imageLabel.setBounds(0, 0, 1400, 1400);
+        imageLabel.setIcon(new ImageIcon("world2Cropped.jpg"));
+        imageLabel.setBounds(140, 100, 1140, 660);
         //Menu Panel and its components
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();       
         this.setPreferredSize(size);
@@ -75,7 +75,18 @@ public class passengerDetails extends baseFrame implements ActionListener {
         add(firstName);
         add(firstLabel);
     }
-
+/*     
+    private void addQRCodeFrame(){
+        JFrame qrFrame = new JFrame();
+        qrFrame.setSize(400, 400);
+        qrFrame.setLayout(null);
+        qrFrame.setResizable(true);       
+        qrFrame.pack();
+        qrFrame.validate();
+        qrFrame.setVisible(true);
+        qrFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+*/    
     public void addSummary(){
         //allSeats = new JButton();
         departLabel = new JLabel("Summary");
@@ -94,11 +105,13 @@ public class passengerDetails extends baseFrame implements ActionListener {
         toCode = new JLabel(flightDetails.airportCodes.get(toAirport));
         toCode.setFont(new Font(null,Font.BOLD,20));
         toCode.setBounds(890,200,50,20);
+        customJLabel(toCode);
         String fromAirport = passengerInfo.getDepartAirport();
         fromCode = new JLabel(flightDetails.airportCodes.get(fromAirport));
         fromCode.setFont(new Font(null,Font.BOLD,20));
         fromCode.setBounds(800,200,50,20);
-        fromCode.setBackground(Color.RED);
+        customJLabel(fromCode);
+        //fromCode.setBackground(Color.RED);
         fromAirportLabel = new JLabel(fromAirport);
         fromAirportLabel.setFont(new Font(null,Font.BOLD,15));
         fromAirportLabel.setBounds(780,220,80,15);
@@ -111,16 +124,19 @@ public class passengerDetails extends baseFrame implements ActionListener {
         departDateValue = new JLabel(departDate);
         departDateValue.setFont(plain20);
         departDateValue.setBounds(800,250,120,20);
+        customJLabel(departDateValue);
         departDateLabel = new JLabel("Date");
         departLabel.setFont(plain25);
         departDateLabel.setBounds(800,235,50,20);
         String flightSeat = passengerInfo.getSeatNumber();
         seatNo = new JLabel("SeatNo:  " + flightSeat);
         seatNo.setFont(plain20);
-        seatNo.setBounds(800,270,200,20);     
+        seatNo.setBounds(800,270,200,20); 
+        customJLabel(seatNo);    
         flightSelected = new JLabel("Flight Selected: " + passengerInfo.getSelectedFlight());   
         flightSelected.setFont(plain20);
-        flightSelected.setBounds(800,290,400,20);
+        flightSelected.setBounds(800,290,350,20);
+        customJLabel(flightSelected);
         bookingButton = new JButton("Confirm");
         bookingButton.setFont(plain20);
         bookingButton.setBounds(800,320,150,20);
@@ -148,13 +164,32 @@ public class passengerDetails extends baseFrame implements ActionListener {
     
 
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == bookingButton){
+            if(firstName.getText() == "" || lastName.getText() == "" ||
+               passportNo.getText() == ""){
+               // pack();
+               // revalidate();
+               // repaint();
+                
+
+            }
+            else{
+                passengerInfo.setFirstName(firstName.getText());
+                passengerInfo.setLastName(lastName.getText());
+                passengerInfo.setPassportNo(passportNo.getText());
+            }
+
+        }
+
         if(e.getSource() == viewTicketButton){
             try {
                 new QRcode();
+                new finalTicket();
             } catch (Exception e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
+
         }
         if(e.getSource() == baseFrame.backButton){
             this.dispose();
@@ -163,12 +198,12 @@ public class passengerDetails extends baseFrame implements ActionListener {
         }
     
     }
-/*  
-    public static void main(String[] args){
+  
+//    public static void main(String[] args){
         //mainUI ui = new mainUI();
         
-        systemFrame newFrame = new systemFrame();
-    }
-*/
+        //systemFrame newFrame = new systemFrame();
+//    }
+
 
 }

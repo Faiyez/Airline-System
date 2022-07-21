@@ -48,7 +48,7 @@ public class passengerInfo {
     public static String getSelectedFlight(){
         return selectedFlight;
     }
-    public static void setFirtsName(String name){
+    public static void setFirstName(String name){
         firstName = name;
     }
     public static String getFirstName(){

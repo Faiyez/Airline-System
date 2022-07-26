@@ -122,7 +122,7 @@ public class flightDetails extends baseFrame implements ActionListener{
     }
     private void addSeats(){
         double r = Math.random();
-        int rand = (int)(r * (9 - 2)) + 2;
+        int rand = (int)(r * (3 - 2)) + 2;
 
         selectSeatsLabel = new JLabel("Select Seats");
         selectSeatsLabel.setBounds(630,130,250,25);
@@ -135,6 +135,7 @@ public class flightDetails extends baseFrame implements ActionListener{
             allSeats[i].setFont(new Font(null,Font.BOLD,15));
             allSeats[i].setSize(5, 5);
             allSeats[i].setFocusable(false);
+            allSeats[i].setBackground(Color.WHITE);
             if(i % rand == 0){
                 allSeats[i].setText("O");
                 allSeats[i].setEnabled(false);
@@ -149,6 +150,7 @@ public class flightDetails extends baseFrame implements ActionListener{
             allSeats[i].setFont(new Font(null,Font.BOLD,15));
             allSeats[i].setSize(5, 5);
             allSeats[i].setFocusable(false);
+            allSeats[i].setBackground(Color.WHITE);
             if(i % rand == 0){
                 allSeats[i].setText("O");
                 allSeats[i].setEnabled(false);
@@ -177,6 +179,7 @@ public class flightDetails extends baseFrame implements ActionListener{
             allSeats[i].setText(value);
             allSeats[i].setFocusable(true);
             allSeats[i].setEnabled(true);
+            allSeats[i].setBackground(Color.WHITE);
             if(i % rand == 0){
                 allSeats[i].setText("O");
                 allSeats[i].setEnabled(false);
@@ -187,6 +190,7 @@ public class flightDetails extends baseFrame implements ActionListener{
             String value = "B" + String.valueOf(i-18);
             allSeats[i].setText(value);
             allSeats[i].setEnabled(true);
+            allSeats[i].setBackground(Color.WHITE);
             if(i % rand == 0){
                 allSeats[i].setText("O");
                 allSeats[i].setEnabled(false);
@@ -235,8 +239,12 @@ public class flightDetails extends baseFrame implements ActionListener{
         for(int i = 0;i < 36; i++){
             if(e.getSource() == allSeats[i]){
                 String seatName = allSeats[i].getText();
+                allSeats[i].setBackground(Color.GREEN);
                 passengerInfo.setSeatNumber(seatName);
                 passengerInfo.getSeatNumber();
+            }
+            else{
+                allSeats[i].setEnabled(false);
             }
 
         }
@@ -252,10 +260,7 @@ public class flightDetails extends baseFrame implements ActionListener{
             new searchFlight(frame);
         }
         if(e.getSource() == refresh){
-            //invalidate();
             arrangeSeats();
-           // validate();
-           // repaint();
         }
         
     }

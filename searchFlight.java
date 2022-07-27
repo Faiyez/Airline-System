@@ -89,6 +89,8 @@ public class searchFlight extends baseFrame implements ActionListener {
         searchFlightButton.setFont(new Font(null,Font.PLAIN,20));
         searchFlightButton.setBounds(800,180,100,30);
         searchFlightButton.addActionListener(this);   
+        searchFlightButton.setBackground(Color.ORANGE);
+        searchFlightButton.setForeground(Color.WHITE);        
         
         imageLabel = new JLabel();
         baseFrame.setImageLabel(imageLabel);
@@ -117,6 +119,7 @@ public class searchFlight extends baseFrame implements ActionListener {
             }
         
         });
+        backButton.setText("Exit");
         addButtons();
         add(searchFlightButton);    
         add(selectDates); 
@@ -150,6 +153,8 @@ public class searchFlight extends baseFrame implements ActionListener {
         oneWayButton = new JButton("One Way");
         oneWayButton.setBounds(240, 180, 90, 25);
         oneWayButton.addActionListener(this);
+        oneWayButton.setBackground(Color.ORANGE);
+        oneWayButton.setForeground(Color.WHITE);
         twowayButton = new JButton("Two Way");
         twowayButton.setBounds(340, 180, 90, 25);
         twowayButton.addActionListener(this);  
@@ -195,6 +200,9 @@ public class searchFlight extends baseFrame implements ActionListener {
             frame = new baseFrame();
             new flightDetails(frame);
          
+        }
+        if(e.getSource() == backButton){
+            this.dispose();
         }
 
 

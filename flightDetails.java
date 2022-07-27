@@ -33,11 +33,11 @@ public class flightDetails extends baseFrame implements ActionListener{
         seatsCollectionA = new JPanel();   
         seatsCollectionA.setBounds(450,180,200,400);  
         seatsCollectionA.setLayout(new GridLayout(6,6,2,2));   
-        seatsCollectionA.setBackground(Color.YELLOW);
+        seatsCollectionA.setBackground(Color.LIGHT_GRAY);
         seatsCollectionB = new JPanel();
         seatsCollectionB.setBounds(700,180,200,400);  
         seatsCollectionB.setLayout(new GridLayout(6,6,2,2));   
-        seatsCollectionB.setBackground(Color.YELLOW);        
+        seatsCollectionB.setBackground(Color.LIGHT_GRAY);        
         addSeats();
         add(seatsCollectionA);
         add(seatsCollectionB);
